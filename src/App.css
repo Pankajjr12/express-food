@@ -1,38 +1,203 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto; /* Allow vertical scrollbar if needed */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto;
+  position: relative; /* Required for positioning the pseudo-element */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://websitedemos.net/fast-food-04/wp-content/uploads/sites/792/2021/03/bg-04-free-img.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.44; /* Adjust the opacity as needed */
+  z-index: -1; /* Ensure the background is behind the content */
+}
+.scrolling {
+  scroll-snap-type: y proximity;
+}
+header {
+  z-index: 10001 !important;
+}
+.section-container {
+  @apply max-w-screen-2xl container mx-auto xl:px-24 px-4;
+}
+
+@media (max-width: 767px) {
+  .section-container {
+    width: 100%;
+    padding-left: 1rem; /* Adjust as needed */
+    padding-right: 1rem; /* Adjust as needed */
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@media (min-width: 768px) {
+  .section-container {
+    width: 100%;
+    
+  }
+}
+.subtitle {
+  @apply text-gray-400 tracking-wide font-bold text-sm md:text-lg;
+}
+.title {
+  @apply text-2xl text-red md:text-3xl font-bold my-2 leading-snug; 
+}
+.headtxt {
+  @apply text-xl text-red md:text-3xl font-bold my-2 leading-snug;
+  animation: rainbow 5s infinite; 
+  max-width: fit-content; 
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.gradient {
+  --tw-gradient-from: rgb(36, 0, 0); /* Red */
+  --tw-gradient-to: #00000000; /* Blue */
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  background-image: linear-gradient(to right, var(--tw-gradient-stops)),
+    url(../public/images/back.jpg);
+  background-size: cover;
+  opacity: 3;
+  
+}
+
+.dropdown-content {
+  display: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* styles.css */
+.fadeIn {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  color: maroon;
+  padding: 10px;
+  font-weight: bold; /* Set text color to red */
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 3s ease-in-out;
+  color: white;
+  background-color: maroon;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold; /* Set text color to red */
+}
+
+.fading-text {
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes changeColor {
+  0% {
+    color: gray;
+  }
+  50% {
+    color: white;
+    
+  }
+  75% {
+    color: gray;
+  }
+  100% {
+    color: white;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-animation {
+  animation: changeColor 3s infinite;
+  font-weight: bold; /* Adjust timing as needed */
+}
+
+@keyframes rainbow {
+  0% { color: black; background-color: white;}
+  40% { color: white;background-color: maroon; }
+}
+
+
+.card-element-container {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.card-element {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+#dropdown-toggle:checked + .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  z-index:1;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  /* Add any other styles for your sticky navbar */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  opacity: 0; /* Initially invisible */
+  transition: opacity 0.3s ease; /* Smooth transition effect */
+}
+
+/* Show overlay on hover */
+.h-full:hover .overlay {
+  opacity: 1;
+}
+.blur-container {
+  position: relative;
+}
+
+.blur-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  filter: blur(10px); /* Adjust the blur intensity as needed */
 }
