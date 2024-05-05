@@ -1,25 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../contexts/AuthProvider'
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 const useCart = () => {
-  const {user} = useContext(AuthContext)
-
-
-  const token = localStorage.getItem("access-token")
-  const {refetch,data : cart = [] } = useQuery({
+  const { user } = useContext(AuthContext);
+  const { refetch, data: cart = [] } = useQuery({
     queryKey: ['carts', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3001/carts?email=${user?.email}`,{
-        headers:{
+      const token = localStorage.getItem("access-token");
+      const res = await fetch(`http://localhost:3001/carts?email=${user?.email}`, {
+        headers: {
           authorization: `Bearer ${token}`
         }
-      })
-      return res.json()
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch cart data');
+      }
+
+      return res.json();
     },
-  })
-  return [cart,refetch];
-  
-}
+  });
+
+  return [cart, refetch];
+};
 
 export default useCart

@@ -8,6 +8,7 @@ import axios from "axios";
 import useAxiosPublic from "../hooks/useAxiosGlobal";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [user, setUser] = useState(null);
@@ -45,7 +46,13 @@ const SignUp = () => {
             axiosPublic
               .post("/users", userInfo)
               .then((res) => {
-                toast.success("Signin successful!");
+                
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Register Successfully, account created!',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
                 document.getElementById("my_modal_5").close();
                 navigate(from, { replace: true });
               })
@@ -89,14 +96,65 @@ const SignUp = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          toast.success("Signin successful!");
-          document.getElementById("my_modal_5").close();
-          navigate("/");
-        });
+        axiosPublic.post("/users", userInfo, { maxRedirects: 0 }) // Add { maxRedirects: 0 } to prevent automatic redirection
+          .then((res) => {
+            // Handle success
+            Swal.fire({
+              icon: 'success',
+              title: 'Register Successfully, account created!',
+              showConfirmButton: false,
+              timer: 2000
+            });
+            document.getElementById("my_modal_5").close();
+            navigate("/");
+          })
+          .catch((error) => {
+            // Handle redirection manually
+            if (error.response && error.response.status === 302 && error.response.headers.location) {
+              // Redirect manually
+              axiosPublic.get(error.response.headers.location)
+                .then((res) => {
+                  // Handle success after redirection
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Register Successfully, account created!',
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                  document.getElementById("my_modal_5").close();
+                  navigate("/");
+                })
+                .catch((error) => {
+                  // Handle error after redirection
+                  Swal.fire({
+                    icon: 'error',
+                    title: `${error}`,
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                });
+            } else {
+              // Handle other errors
+              Swal.fire({
+                icon: 'error',
+                title: `${error}`,
+                showConfirmButton: false,
+                timer: 2000
+              });
+            }
+          });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // Handle sign up error
+        Swal.fire({
+          icon: 'error',
+          title: `${error}`,
+          showConfirmButton: false,
+          timer: 2000
+        });
+      });
   };
+  
   return (
     <>
       <ToastContainer />

@@ -47,7 +47,7 @@ function classNames(...classes) {
 const Navbar = ({ onSearch }) => {
   const [isSticky, setSticky] = useState(false);
   const { user, loading } = useAuth();
-  const [cart, refetch] = useCart();
+  const [cart, refetch] = useCart(!user);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const [openMenu, setOpenMenu] = useState(null); // State to track open submenu
@@ -128,6 +128,7 @@ const Navbar = ({ onSearch }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   return (
     <Disclosure
