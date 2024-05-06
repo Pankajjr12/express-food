@@ -62,7 +62,7 @@ const Cards = ({ item }) => {
       };
 
       axios
-        .post("https://express-food-server.onrender.com//carts", cartItem)
+        .post("https://express-food-server.onrender.com/carts", cartItem)
         .then((response) => {
           console.log(response);
           if (response) {

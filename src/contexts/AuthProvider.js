@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if(currentUser){
         const userInfo = {email:currentUser.email}
-        axios.post("https://express-food-server.onrender.com//jwt",userInfo)
+        axios.post("https://express-food-server.onrender.com/jwt",userInfo)
         .then((response) => {
           if(response.data.token){
             localStorage.setItem('access-token',response.data.token);

@@ -19,7 +19,7 @@ const Search = () => {
         }
 
         const response = await fetch(
-          `https://express-food-server.onrender.com//menu/search?name=${searchQuery}`
+          `https://express-food-server.onrender.com/menu/search?name=${searchQuery}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch menu items");

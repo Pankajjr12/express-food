@@ -17,7 +17,7 @@ const Cart = () => {
   // Handle quantity increase
   const handleIncrease = async (item) => {
     try {
-      const response = await fetch(`https://express-food-server.onrender.com//carts/${item._id}`, {
+      const response = await fetch(`https://express-food-server.onrender.com/carts/${item._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const Cart = () => {
   const handleDecrease = async (item) => {
     // console.log(item._id);
     if (item.quantity > 1) {
-      const response = await fetch(`https://express-food-server.onrender.com//carts/${item._id}`, {
+      const response = await fetch(`https://express-food-server.onrender.com/carts/${item._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
@@ -97,7 +97,7 @@ const Cart = () => {
       .then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`https://express-food-server.onrender.com//carts/${item._id}`)
+            .delete(`https://express-food-server.onrender.com/carts/${item._id}`)
             .then((response) => {
               if (response) {
                 refetch();

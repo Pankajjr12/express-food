@@ -13,7 +13,7 @@ const Order = () => {
     queryKey: ["orders", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://express-food-server.onrender.com//payments?email=${user?.email}`,
+        `https://express-food-server.onrender.com/payments?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${token}`,

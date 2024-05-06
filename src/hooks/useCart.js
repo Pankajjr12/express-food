@@ -8,7 +8,7 @@ const useCart = () => {
     queryKey: ['carts', user?.email],
     queryFn: async () => {
       const token = localStorage.getItem("access-token");
-      const res = await fetch(`https://express-food-server.onrender.com//carts?email=${user?.email}`, {
+      const res = await fetch(`https://express-food-server.onrender.com/carts?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${token}`
         }

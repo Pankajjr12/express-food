@@ -50,7 +50,7 @@ const Contact = () => {
       // Check if the form email matches the logged-in user's email
       if (formData.email === loggedInUserEmail) {
         const response = await axios.post(
-          "https://express-food-server.onrender.com//users/send-email",
+          "https://express-food-server.onrender.com/users/send-email",
           formDataWithUserEmail,
           {
             headers: {

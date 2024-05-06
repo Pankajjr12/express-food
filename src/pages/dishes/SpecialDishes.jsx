@@ -16,7 +16,7 @@ const SpecialDishes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://express-food-server.onrender.com//menu");
+        const res = await fetch("https://express-food-server.onrender.com/menu");
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }

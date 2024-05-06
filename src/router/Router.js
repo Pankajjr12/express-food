@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         path: "/search", // Define the path for the search page
         element: <Search />,
         loader: ({ query }) =>
-          fetch(`https://express-food-server.onrender.com//menu/search${query}`),
+          fetch(`https://express-food-server.onrender.com/menu/search${query}`),
       },
     ],
   },
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
         path: "update-menu/:id",
         element: <UpdateMenu />,
         loader: ({ params }) =>
-          fetch(`https://express-food-server.onrender.com//menu/${params.id}`),
+          fetch(`https://express-food-server.onrender.com/menu/${params.id}`),
       },
     ],
   },
