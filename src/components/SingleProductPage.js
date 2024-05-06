@@ -22,7 +22,7 @@ const SingleProductPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/menu/${id}`);
+        const response = await fetch(`https://express-food-server.onrender.com//menu/${id}`);
         const data = await response.json();
         setMenu(data);
       } catch (error) {

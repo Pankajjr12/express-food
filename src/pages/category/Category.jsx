@@ -23,7 +23,7 @@ const Category = () => {
     return () => clearInterval(interval); // Clean up the interval on unmount
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3001/menu")
+    fetch("https://express-food-server.onrender.com//menu")
       .then((response) => response.json())
       .then((data) => {
         // Assuming the API response is an array of category objects
